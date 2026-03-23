@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Login</title>
+  <link rel="stylesheet" href="style.css.second">
+</head>
+<body>
+
+  <div class="container">
+
+    <h2>Login</h2>
+
+    <input type="text" id="usuario" placeholder="Usuário">
+    <input type="password" id="senha" placeholder="Senha">
+
+    <button onclick="login()">Entrar</button>
+
+    <p id="mensagem"></p>
+
+    <hr>
+
+    <h3>Criar conta</h3>
+
+    <input type="text" id="novoUsuario" placeholder="Novo usuário">
+    <input type="password" id="novaSenha" placeholder="Nova senha">
+
+    <button onclick="cadastrar()">Cadastrar</button>
+
+  </div>
+
+  <script>
+
+    function cadastrar() {
+      let usuario = document.getElementById("novoUsuario").value;
+      let senha = document.getElementById("novaSenha").value;
+
+      if (usuario === "" || senha === "") {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      localStorage.setItem("usuario", usuario);
+      localStorage.setItem("senha", senha);
+
+      alert("Cadastro realizado!");
+    }
+
+    function login() {
+      let usuario = document.getElementById("usuario").value;
+      let senha = document.getElementById("senha").value;
+
+      let userSalvo = localStorage.getItem("usuario");
+      let senhaSalva = localStorage.getItem("senha");
+
+      if (usuario === userSalvo && senha === senhaSalva) {
+        document.getElementById("mensagem").textContent = "Login realizado!";
+      } else {
+        document.getElementById("mensagem").textContent = "Usuário ou senha incorretos!";
+      }
+    }
+
+  </script>
+
+</body>
+</html>
